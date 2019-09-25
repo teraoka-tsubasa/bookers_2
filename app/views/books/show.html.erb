@@ -1,0 +1,84 @@
+
+<div class="body">
+	<div class="container">
+		<p id="notice"></p>
+		<div class="row">
+			<div class="col-xs-3">
+				<h2>User info</h2>
+				<%= attachment_image_tag @user, :profile_image,
+				 fallback: "no_image.jpg",size: "100x100" %>
+				<table class="table">
+					<tbody>
+						<tr></tr>
+						<tr>
+							<th>name</th>
+							<th><%= @book.user.name %></th>
+						</tr>
+						<tr>
+							<th>introduction</th>
+							<th><%= @book.user.introduction %></th>
+						</tr>
+					</tbody>
+				</table>
+				<div>
+				<%= link_to(edit_user_path(current_user.id), class: "col-xs-12 btn btn-default") do %>
+					<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+					<% end -%>
+
+				</div>
+
+				<div>
+					<h2>New book</h2>
+					<%= form_for(@book_new) do |f| %>
+
+					<h4>Title</h4>
+					<%= f.text_field :title, class:"form-control" %>
+
+					<h4>Opinion</h4>
+					<%= f.text_area :body, class:"form-control" %>
+					<%= f.submit 'Create Book', class: "btn btn-primary" %>
+					<% end %>
+				</div>
+
+			</div>
+			<div class="col-xs-9">
+					<h2>Book detail</h2>
+					<table class="table table-hover table-inverse">
+					<thead>
+						<tr><th></th><th></th><th></th><th colspan="3"></th></tr>
+					</thead>
+					<tbody>
+						<td>    </td>
+						<tr class="new-table">
+						<td><%= attachment_image_tag @user, :profile_image,
+				 fallback: "no_image.jpg",size: "50x50" %></td>
+
+
+
+						<td><%= link_to @book.title, book_path(@book.id) %></td>
+						<td><%= @book.body %></td>
+
+						<% if current_user.id == @book.user_id %>
+						<td><h4><span class="label label-success"><%= link_to "edit",edit_book_path(@book.id) %></span></h4></td>
+						<td><h4><span class="label label-danger"> <%= link_to "destroy",book_path(@book.id), method: :delete, data:{confirm:"本当に消しますか？"} %> </span></h4></td>
+						<% end %>
+					</tr>
+
+					</tbody>
+					<td><%= link_to @book.user.name, user_path(@book.user.id) %></td>
+
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-3 col-xs-offset-9">
+				<p>CopyRight Infratop.inc</p>
+			</div>
+		</div>
+	</div>
+</footer>

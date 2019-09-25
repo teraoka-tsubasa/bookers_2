@@ -1,0 +1,57 @@
+
+<% if @user.errors.any? %>
+				    <div class="alert alert-danger">
+				      <ul>
+				      	 <h2>errors prohibited this obj from being saved:</h2>
+				      <% @user.errors.full_messages.each do |message| %>
+
+				        <li><%= message %></li>
+				      <% end %>
+				      </ul>
+				    </div>
+				<% end %>
+<div class="body">
+	<div class="container">
+		<p id="notice"></p>
+		<div class="row">
+
+			<div class="col-xs-9">
+				<h1>User info</h1>
+
+					<%= form_for(@user) do |f| %>
+
+					<h4>Name <%= f.text_field :name %></h4>
+
+					<h4>Image</h4>
+					<%= f.attachment_field :profile_image %>
+
+					<h4>Introduction
+					<%= f.text_field :introduction %></h4>
+					<br>
+
+					<%= f.submit 'Update User'%>
+
+					<% end %>
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-3 col-xs-offset-9">
+				<p>CopyRight Infratop.inc</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
